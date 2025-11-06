@@ -1,6 +1,6 @@
-#  Calculadora Interactiva IS-LM
+#  IMEC (Intermediate Macroeconomic Excercises Calculator)
 
-Una herramienta dinámica diseñada para el análisis y la simulación del equilibrio macroeconómico y el mecanismo de transmisión de shocks fiscales y monetarios en el modelo IS-LM. Ideal para la práctica y comprensión profunda de la materia.
+Una herramienta dinámica diseñada para el análisis y la simulación numérico del equilibrio macroeconómico y el mecanismo de transmisión de shocks fiscales y monetarios los modelos IS-LM y Mundell-Flemming con movilidad perfecta de capitales STANDARD. Ideal para la práctica y comprensión profunda de la materia.
 
 ##  Características Principales
 
@@ -30,12 +30,11 @@ Este proyecto es un archivo único HTML, CSS y JavaScript.
 
 La herramienta está diseñada para su uso directo en la plataforma educativa.
 
-1.  Asegúrese de que el archivo `index.html` está desplegado en un servicio de hosting estático (GitHub Pages, Netlify).
-2.  En Moodle, cree una actividad **URL**.
-3.  Pegue la URL pública del hosting.
-4.  En **Apariencia**, seleccione **Incrustar (Embed)** para cargar la calculadora dentro de un *iframe* y controlar el acceso de los alumnos.
+1.  En Moodle, cree una actividad **URL**.
+2.  Pegue la URL pública del hosting.
+3.  En **Apariencia**, seleccione **Incrustar (Embed)** para cargar la calculadora dentro de un *iframe* y controlar el acceso de los alumnos.
 
 ---
 **Autor:** [Ubay Pérez Granja]
 **Uso de IA:** Esta aplicación ha sido creada usando vibecoding en Gemini 2.5 Flash y ChatGPT5
-**Versión:** 1.0 (Octubre 2025)
+**Versión:** 1.1 (Noviembre 2025)
