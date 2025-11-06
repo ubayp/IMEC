@@ -1,24 +1,34 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Modelos macro – Selección</title>
-<script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Simulador de ejercicios de Macroeconomía</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="min-h-screen bg-slate-50 text-slate-800">
-<main class="max-w-4xl mx-auto p-6">
-<h1 class="text-3xl font-bold mb-6">Elige el modelo</h1>
-<div class="grid md:grid-cols-2 gap-6">
-<a href="./IS_LM/" class="block p-6 rounded-2xl bg-white shadow hover:shadow-lg transition">
-<h2 class="text-xl font-semibold mb-2">IS–LM</h2>
-<p class="text-sm text-slate-600">IS-LM con economía abierta. Cálculo de Y, r y desplazamientos IS/LM.</p>
-</a>
-<a href="./MF_MP/" class="block p-6 rounded-2xl bg-white shadow hover:shadow-lg transition">
-<h2 class="text-xl font-semibold mb-2">Mundell–Fleming (movilidad perfecta)</h2>
-<p class="text-sm text-slate-600">Tipo de cambio fijo/flexible, comparación de shocks y mecanismos.</p>
-</a>
-</div>
-</main>
+<body class="min-h-screen bg-slate-50 text-slate-800 flex flex-col items-center justify-center">
+  <main class="max-w-4xl w-full mx-auto p-6 text-center">
+    <h1 class="text-3xl font-bold mb-2">Simulador de ejercicios de Macroeconomía</h1>
+    <p class="text-slate-600 mb-8">Elige tu herramienta de simulación</p>
+
+    <div class="grid md:grid-cols-2 gap-6 text-left">
+      <a href="./IS_LM/" class="block p-6 rounded-2xl bg-white shadow hover:shadow-lg transition">
+        <h2 class="text-xl font-semibold mb-2">Modelo IS–LM</h2>
+        <p class="text-sm text-slate-600">
+          Análisis de equilibrio en una economía cerrada o abierta. Cálculo de <em>Y</em>, <em>r</em> y desplazamientos de IS/LM.
+        </p>
+      </a>
+      <a href="./MF_MP/" class="block p-6 rounded-2xl bg-white shadow hover:shadow-lg transition">
+        <h2 class="text-xl font-semibold mb-2">Modelo Mundell–Fleming (movilidad perfecta)</h2>
+        <p class="text-sm text-slate-600">
+          Simulación bajo tipo de cambio fijo o flexible. Comparación de shocks y mecanismos de ajuste.
+        </p>
+      </a>
+    </div>
+  </main>
+
+  <footer class="mt-10 text-sm text-slate-500">
+    © 2025 – Simulador de ejercicios de Macroeconomía
+  </footer>
 </body>
 </html>
