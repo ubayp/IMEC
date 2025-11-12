@@ -2,7 +2,7 @@
 
 // I. Valores Iniciales de los Parámetros (Inputs)
 const initialParams = {
-    C0: 1900, c1: 0.8, T0: 0, t: 0.2, TR0: 2000, I0: 4600, b: 30, G0: 3000, n: 0, 
+    C0: 1900, c1: 0.8, T0: 0, t: 0.2, TR0: 2000, I0: 4600, b: 30, G0: 3000, n: 0, z: 0,
     X0: 5000, IM0: 500, m: 0.24, k: 1, h: 100, Mp: 24500
 };
 
@@ -25,7 +25,7 @@ function validateParams(params) {
         errors.push("b (Sensibilidad de I a r) debe ser positivo (>= 0).");
     }
     
-    const rho = 1 - params.c1 * (1 - params.t) + params.n + params.m;
+    const rho = 1 - params.c1 * (1 - params.t) - params.n - params.z + params.m;
     if (rho <= 0) {
         errors.push("El denominador del multiplicador (rho) debe ser positivo. Revise las propensiones.");
     }
@@ -41,7 +41,7 @@ function validateParams(params) {
 
 // III. Lógica de Cálculo (Función Principal)
 function calculateEquilibrium(params) {
-    const { C0, c1, T0, t, TR0, I0, b, G0, n, X0, IM0, m, k, h, Mp } = params;
+    const { C0, c1, T0, t, TR0, I0, z, b, G0, n, X0, IM0, m, k, h, Mp } = params;
 
     // 1. Cálculo de Componentes Intermedios
     
@@ -49,7 +49,7 @@ function calculateEquilibrium(params) {
     const A0 = C0 + c1 * (TR0 - T0) + I0 + G0 + (X0 - IM0); // A0 (Gasto Autónomo Agregado)
 
     // rho = 1 - c1(1-t) + n + m
-    const rho = 1 - c1 * (1 - t) + n + m; // rho (Propensión Marginal Agregada al Ahorro y Fugas)
+    const rho = 1 - c1 * (1 - t) - n - z + m; // rho (Propensión Marginal Agregada al Ahorro y Fugas)
     
     // alpha = 1 / rho
     const alpha = 1 / rho; // alpha (Multiplicador Simple de Gasto)
@@ -74,7 +74,7 @@ function calculateEquilibrium(params) {
 
     // 3. Cálculo de Variables de Gasto y Saldos Sectoriales
     const C = C0 + c1 * (Y - (T0 + t * Y) + TR0); // Consumo (C)
-    const I = I0 - b * r; // Inversión (I)
+    const I = I0 - b * r + z * Y; // Inversión (I)
     const G = G0 + n * Y; // Gasto Público (G)
     const Sp = -C0 + (1 - c1) * (Y - (T0 + t * Y) + TR0); // Ahorro Privado (S_p)
     const SSP = (T0 + t * Y) - (G0 + n * Y) - TR0; // Saldo Sector Público (SSP)
@@ -344,7 +344,7 @@ function calculateBalancedEquilibrium() {
     // Componentes Base
     const NX_aut = X0 - IM0;
     const A0_original = C0 + c1 * (TR0 - T0) + I0 + G0 + NX_aut;
-    const rho = 1 - c1 * (1 - t) + n + m; 
+    const rho = 1 - c1 * (1 - t) - n - z + m; 
     const Y_e_denom = h * rho + b * k; // D = h*rho + b*k
     
     let Y_star;
@@ -424,12 +424,12 @@ function calculateBalancedEquilibrium() {
                 if (policy === 'G0') {
                     // A_aut^Fijo(G0) = C0 + I0 + NX_aut + T0(1 - c1) - TR0(1 - c1)
                     A_aut_fijo = C0 + I0 + NX_aut + T0 * (1 - c1) - TR0 * (1 - c1);
-                    multiplier_denom = 1 - gamma * (t - n);
+                    multiplier_denom = 1 - gamma * (t - n - z);
                     
                 } else if (policy === 'TR0' || policy === 'T0') {
                     // A_aut^Fijo(TR0/T0) = C0 + I0 + G0(1 - c1) + NX_aut
                     A_aut_fijo = C0 + I0 + G0 * (1 - c1) + NX_aut;
-                    multiplier_denom = 1 - gamma * c1 * (t - n);
+                    multiplier_denom = 1 - gamma * c1 * (t - n - z);
                 }
 
                 if (multiplier_denom === 0) throw new Error("El denominador del multiplicador final es cero. No hay equilibrio.");
